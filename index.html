@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>푸꾸옥 7박 8일 여행일정</title>
   <style>
     body {
@@ -26,11 +26,29 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
       border-radius: 8px;
     }
-    h2 {
-      color: #0984e3;
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
-    .day {
-      margin-bottom: 2rem;
+    .tab-button {
+      background-color: #dfe6e9;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .tab-button.active {
+      background-color: #00b894;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
     }
     .date {
       font-weight: bold;
@@ -51,7 +69,13 @@
   </header>
 
   <main>
-    <div class="day">
+    <div class="tabs">
+      <button class="tab-button active" data-tab="day1">DAY 1</button>
+      <button class="tab-button" data-tab="day2">DAY 2</button>
+      <!-- 이후 DAY 3~ 추가 예정 -->
+    </div>
+
+    <div id="day1" class="tab-content active">
       <div class="date">DAY 1 - 6월 21일 (금)</div>
       <ul>
         <li>푸꾸옥 도착 후 공항 → 비다로카 리조트</li>
@@ -60,7 +84,7 @@
       </ul>
     </div>
 
-    <div class="day">
+    <div id="day2" class="tab-content">
       <div class="date">DAY 2 - 6월 22일 (토)</div>
       <ul>
         <li>빈펄 사파리 오전 방문</li>
@@ -68,11 +92,25 @@
       </ul>
     </div>
 
-    <!-- 추가 DAY 는 복사해서 이어붙이면 됩니다 -->
   </main>
 
   <footer>
-    ⓒ 2025 현지의 푸꾸옥 여행 일정표
+    © 2025 현지의 푸꾸옥 여행 일정표
   </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
