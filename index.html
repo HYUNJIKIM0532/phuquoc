@@ -31,6 +31,7 @@
       justify-content: center;
       gap: 1rem;
       margin-bottom: 1rem;
+      flex-wrap: wrap;
     }
     .tab-button {
       background-color: #dfe6e9;
@@ -58,6 +59,26 @@
       margin-top: 0.5rem;
       display: block;
       font-size: 0.9rem;
+    }
+    .expense-summary {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+    }
+    .expense-summary h2 {
+      color: #2d3436;
+    }
+    .expense-summary ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .expense-summary li::before {
+      content: "\1F4B0 ";
+    }
+    .expense-summary strong {
+      color: #d63031;
     }
     footer {
       text-align: center;
@@ -87,7 +108,6 @@
         <li>05:30 푸꾸옥 도착</li>
         <li>투어픽 샌딩 차량 탑승 → 더라운지 이동</li>
         <li>더라운지에서 휴식 (~10:00까지 예정)</li>
-          <br><small>포함: 쥬스,과일,샤워실,짐보관(10시까지만)</small>
         <li>10:00 짐 보관 (숙소: <strong>비다로카 리조트</strong>)
           <a href="https://maps.app.goo.gl/2HaSp6Fgt799ZF5G8" class="map-link" target="_blank">📍 구글지도에서 보기</a>
         </li>
@@ -105,19 +125,31 @@
     <div id="day2" class="tab-content">
       <div class="date">DAY 2 - 6월 22일 (토)</div>
       <ul>
-        <li>오전: 빈펄 사파리 방문</li>
-        <li>오후: 리조트 수영장 & 해변 산책</li>
+        <li>일정 미정</li>
       </ul>
     </div>
 
     <div id="day3" class="tab-content">
       <div class="date">DAY 3 - 6월 23일 (일)</div>
       <ul>
-        <li>빈원더스 방문 (오전~오후)</li>
-        <li>빈펄 사파리 방문 (연계 코스)</li>
+        <li>빈원더스 + 빈펄 사파리 (콤보 입장권 이용)</li>
       </ul>
-      <p><strong>📝 메모:</strong> 투어픽 통해 결제 완료</p>
+      <p><strong>📝 메모:</strong> 투어픽 통해 콤보 티켓 결제 완료 (157,762원)</p>
     </div>
+
+    <section class="expense-summary">
+      <h2>💸 여행 경비 요약</h2>
+      <ul>
+        <li>✈️ 항공권 (1인): 212,800 + 231,109 + 38,902 = <strong>482,811원</strong></li>
+        <li>🏨 비다로카 리조트 (2박, 조식 포함): <strong>82,301원</strong></li>
+        <li>🏨 M빌리지 (2박, 조식 포함): <strong>109,194원</strong></li>
+        <li>🏨 풀만 리조트 (1박, 트립닷컴): <strong>149,091원</strong></li>
+        <li>🏨 코럴베이 리조트 (2박): <strong>89,108원</strong></li>
+        <li>🧖‍♀️ 쏙나우 머드스파: <strong>49,051원 / 2인</strong> (투어픽)</li>
+        <li>🎟️ 빈원더스+사파리 콤보 티켓: <strong>157,762원 / 2인</strong> (투어픽)</li>
+      </ul>
+      <p><strong>예상 합계 (항공+숙소+스파+티켓): 약 <span id="total-cost"></span>원</strong></p>
+    </section>
   </main>
 
   <footer>
@@ -137,6 +169,10 @@
         document.getElementById(button.dataset.tab).classList.add('active');
       });
     });
+
+    // 총 경비 계산 (JS)
+    const total = 482811 + 82301 + 109194 + 149091 + 89108 + 49051 + 157762;
+    document.getElementById("total-cost").innerText = total.toLocaleString();
   </script>
 </body>
 </html>
