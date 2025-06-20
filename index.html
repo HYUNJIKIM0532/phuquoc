@@ -238,7 +238,10 @@
     });
 
     const total = 482811 + 82301 + 109194 + 149091 + 89108 + 12220 + 49051 + 15000 + 15500 + 102900 + 157762 + 72350;
-    document.getElementById("total-cost")?.innerText = total.toLocaleString();
+   const el = document.getElementById("total-cost");
+if (el) {
+  el.innerText = total.toLocaleString();
+}
   </script>
 </body>
 </html>
